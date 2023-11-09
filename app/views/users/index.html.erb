@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+      <!-- have a button POST via AJAX -->
+      <button hx-delete="/users/<%= user.id %>"
+              hx-confirm="Are you sure?"
+              hx-target="body"
+              hx-push-url="true"
+              hx-swap="outerHTML">
+        Delete by HTMLX
+      </button>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user", new_user_path %>
